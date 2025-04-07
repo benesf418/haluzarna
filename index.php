@@ -1,7 +1,5 @@
 <?php
 
-
-use app\support\Database;
 use app\Router;
 
 // register default autoloading function
@@ -18,6 +16,5 @@ $path = substr(
     trim($path, '/'),
     strlen('haluzarna/')
 );
-
 
 Router::route($path);

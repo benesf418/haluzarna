@@ -3,12 +3,10 @@
 namespace app\entity\user;
 
 use app\entity\Entity;
-use app\entity\user\UserAlreadyExistsException as UserUserAlreadyExistsException;
+use app\entity\user\UserAlreadyExistsException;
 use app\support\Database;
 use app\support\Logger;
 use Exception;
-use SQLite3;
-use UserAlreadyExistsException;
 
 class User extends Entity {
 
@@ -51,7 +49,7 @@ class User extends Entity {
         if ($createUserQuery->execute() === false) {
             Logger::log("failed to create user - ".$db->lastErrorMsg());
             if ($db->lastErrorCode() === 19 && strpos($db->lastErrorMsg(), 'UNIQUE') !== false) {
-                throw new UserUserAlreadyExistsException();
+                throw new UserAlreadyExistsException();
             }
             throw new Exception('db failed to create user');
         }
@@ -77,7 +75,7 @@ class User extends Entity {
         if ($success === false) {
             Logger::log("failed to flush user with id $id - ".$db->lastErrorMsg());
             if ($db->lastErrorCode() === 19 && strpos($db->lastErrorMsg(), 'UNIQUE') !== false) {
-                throw new UserUserAlreadyExistsException();
+                throw new UserAlreadyExistsException();
             }
             throw new Exception("failed to flush user");
         }

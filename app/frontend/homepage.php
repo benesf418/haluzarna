@@ -1,7 +1,6 @@
 <?php
 
 use app\entity\user\User;
-use app\support\Database;
 
 $picus = User::createUser('picusek123');
 $picus->setBalance(999);
