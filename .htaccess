@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /haluzarna/
+
+# Ensure requests to existing files or directories are ignored
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect all requests to index.php
+RewriteRule ^(.*)$ index.php [L,QSA]
